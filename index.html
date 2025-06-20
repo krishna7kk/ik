@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Venkateswara Constructions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.7/Babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .navbar {
+            transition: all 0.3s ease;
+            
+        }
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+        .card, .team-card, .client-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover, .team-card:hover, .client-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .menu-open {
+            transform: translateX(0);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: #facc15;
+            border-radius: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 10px;
+            width: 2px;
+            height: 100%;
+            background: #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 bg-black bg-opacity-75 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold">SVC</h1>
+            <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">☰</button>
+            <div id="nav-links" class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-yellow-400 transition-colors">Home</a>
+                <a href="#about" class="hover:text-yellow-400 transition-colors">About</a>
+                <a href="#timeline" class="hover:text-yellow-400 transition-colors">Timeline</a>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">Services</a>
+                <a href="#clients" class="hover:text-yellow-400 transition-colors">Clients</a>
+                <a href="#projects" class="hover:text-yellow-400 transition-colors">Projects</a>
+                <a href="#team" class="hover:text-yellow-400 transition-colors">Our Team</a>
+                <a href="#gallery" class="hover:text-yellow-400 transition-colors">Gallery</a>
+                <a href="#contact" class="hover:text-yellow-400 transition-colors">Contact</a>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-black bg-opacity-95 text-white transform translate-x-full transition-transform duration-300 md:hidden">
+            <div class="flex flex-col space-y-6 p-6">
+                <button id="menu-close" class="text-2xl self-end">✕</button>
+                <a href="#home" class="text-lg hover:text-yellow-400">Home</a>
+                <a href="#about" class="text-lg hover:text-yellow-400">About</a>
+                <a href="#timeline" class="text-lg hover:text-yellow-400">Timeline</a>
+                <a href="#services" class="text-lg hover:text-yellow-400">Services</a>
+                <a href="#clients" class="text-lg hover:text-yellow-400">Clients</a>
+                <a href="#projects" class="text-lg hover:text-yellow-400">Projects</a>
+                <a href="#team" class="text-lg hover:text-yellow-400">Our Team</a>
+                <a href="#gallery" class="text-lg hover:text-yellow-400">Gallery</a>
+                <a href="#contact" class="text-lg hover:text-yellow-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="h-screen bg-cover bg-center relative" style="background-image: url('image/m4.jpg')">
+    <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+        <div class="text-center text-white animate-hero">
+            <h1 class="text-5xl font-bold mb-4">Sri Venkateswara Constructions</h1>
+            <p class="text-xl mb-6">Trusted Electrical Contractors Since 1998</p>
+            <a href="https://ems-one-rho.vercel.app" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition-colors">Login</a>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 animate-section">About Us</h2>
+            <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto">
+                Founded in 1998, Sri Venkateswara Constructions is a premier electrical contractor specializing in industrial projects. With over 27 years of experience, we deliver high-quality, reliable, and safe electrical solutions tailored to our clients' needs. Our partnerships with industry leaders like Base Automation, Piramal Pharma, Mithiri Laboratories, and Aurobindo Pharma reflect our commitment to excellence and innovation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 animate-section">Our Journey Since 1998</h2>
+            <div class="max-w-2xl mx-auto space-y-8">
+                <div class="timeline-item animate-card">
+                    <h3 class="text-xl font-semibold mb-2">1998 - Foundation</h3>
+                    <p class="text-gray-600">Sri Venkateswara Constructions was established in Hyderabad, starting with small-scale electrical projects.</p>
+                </div>
+                <div class="timeline-item animate-card">
+                    <h3 class="text-xl font-semibold mb-2">2005 - Piramal Pharma Ltd</h3>
+                    <p class="text-gray-600">Began collaboration with Piramal Pharma Ltd in Ennore, Chennai, for advanced automation projects.</p>
+                </div>
+                <div class="timeline-item animate-card">
+                    <h3 class="text-xl font-semibold mb-2">2012 - Major Project with Base Automation Ltd</h3>
+                    <p class="text-gray-600">Completed electrical installations for Base Automation Ltd's facility in Ennore, Chennai, marking a key milestone.</p>
+                </div>
+                <div class="timeline-item animate-card">
+                    <h3 class="text-xl font-semibold mb-2">2018 - Collaboration with Maithri Laboratories</h3>
+                    <p class="text-gray-600">Provided electrical solutions for Maithri Laboratories in Lingottam, Hyderabad, enhancing our pharmaceutical expertise.</p>
+                </div>
+                <div class="timeline-item animate-card">
+                    <h3 class="text-xl font-semibold mb-2">2022 - Aurobindo Pharma Project</h3>
+                    <p class="text-gray-600">Executed power system upgrades for Aurobindo Pharma Ltd in Sangareddy, Hyderabad, strengthening our industry presence.</p>
+                </div>
+                <div class="timeline-item animate-card">
+                    <h3 class="text-xl font-semibold mb-2">2025 - Continued Excellence</h3>
+                    <p class="text-gray-600">Celebrating 27 years of delivering innovative electrical solutions to leading clients across India.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 animate-section">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center card animate-card">
+                    <h3 class="text-xl font-semibold mb-4">Industrial Electrical Installations</h3>
+                    <p class="text-gray-600">Comprehensive electrical installations for factories, warehouses, and industrial facilities.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center card animate-card">
+                    <h3 class="text-xl font-semibold mb-4">Maintenance & Repairs</h3>
+                    <p class="text-gray-600">Reliable maintenance and repair services to ensure uninterrupted operations.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center card animate-card">
+                    <h3 class="text-xl font-semibold mb-4">Power System Upgrades</h3>
+                    <p class="text-gray-600">Modernizing electrical systems for enhanced efficiency and safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 animate-section">Our Major Clients</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center client-card animate-card">
+                    <img src="image/base (1).png" alt="Base Automation Logo" class="w-32 h-32 object-contain mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Base Automation Pvt Ltd</h3>
+                    <p class="text-gray-600">Saligramam, Chennai</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center client-card animate-card">
+                    <img src="image/ppl.png" alt="Piramal Pharma Logo" class="w-32 h-32 object-contain mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Piramal Pharma Ltd</h3>
+                    <p class="text-gray-600">Ennore, Chennai</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center client-card animate-card">
+                    <img src="image/mait.png" alt="Maitiri Laboratories Logo" class="w-32 h-32 object-contain mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Maithri Laboratories</h3>
+                    <p class="text-gray-600">Lingottam, Hyderabad</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center client-card animate-card">
+                    <img src="image/auro.png" alt="Aurobindo Pharma Logo" class="w-32 h-32 object-contain mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Aurobindo Pharma Ltd</h3>
+                    <p class="text-gray-600">Sangareddy, Hyderabad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Projects Section -->
+<section id="projects" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4 animate-section">Our Projects</h2>
+        <p class="text-lg text-gray-600 text-center mb-8">
+            Proudly delivering 
+            <span class="font-semibold text-yellow-400 animate-pulse">1025+ projects</span> 
+            across India, showcasing our expertise in electrical contracting.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="relative bg-white p-6 rounded-lg shadow-lg card animate-card group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Project 1" class="w-full h-48 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white text-center">
+                        <h3 class="text-xl font-semibold mb-2">Factory Electrification</h3>
+                        <p class="text-sm">Complete electrical setup for a 50,00,000 sq.ft. manufacturing unit for Base Automation, Chennai.</p>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-xl font-semibold mb-2">Factory Electrification</h3>
+                    <p class="text-gray-600">Complete electrical setup for a 50,00,000 sq.ft. manufacturing unit for Base Automation, Chennai.</p>
+                </div>
+            </div>
+            <div class="relative bg-white p-6 rounded-lg shadow-lg card animate-card group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4" alt="Project 2" class="w-full h-48 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white text-center">
+                        <h3 class="text-xl font-semibold mb-2">Pharma Facility Wiring</h3>
+                        <p class="text-sm">Advanced electrical systems for Piramal Pharma's Ennore facility.</p>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-xl font-semibold mb-2">Pharma Facility Wiring</h3>
+                    <p class="text-gray-600">Advanced electrical systems for Piramal Pharma's Ennore facility.</p>
+                </div>
+            </div>
+            <div class="relative bg-white p-6 rounded-lg shadow-lg card animate-card group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c" alt="Project 3" class="w-full h-48 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white text-center">
+                        <h3 class="text-xl font-semibold mb-2">Power System Upgrade</h3>
+                        <p class="text-sm">Upgraded power distribution for Aurobindo Pharma in Sangareddy, Hyderabad.</p>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-xl font-semibold mb-2">Power System Upgrade</h3>
+                    <p class="text-gray-600">Upgraded power distribution for Aurobindo Pharma in Sangareddy, Hyderabad.</p>
+                </div>
+            </div>
+            <div class="relative bg-white p-6 rounded-lg shadow-lg card animate-card group overflow-hidden">
+                <img src="image/m9.jpg" alt="Project 4" class="w-full h-48 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white text-center">
+                        <h3 class="text-xl font-semibold mb-2">Feeder Erection</h3>
+                        <p class="text-sm">Installation of high-capacity feeder lines for efficient power distribution at Mithiri Laboratories, Hyderabad.</p>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-xl font-semibold mb-2">Feeder Erection</h3>
+                    <p class="text-gray-600">Installation of high-capacity feeder lines for efficient power distribution at Mithiri Laboratories, Hyderabad.</p>
+                </div>
+            </div>
+            <div class="relative bg-white p-6 rounded-lg shadow-lg card animate-card group overflow-hidden">
+                <img src="image/m22.jpg" alt="Project 5" class="w-full h-48 object-cover rounded-t-lg mb-4 transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white text-center">
+                        <h3 class="text-xl font-semibold mb-2">Transformer Erection</h3>
+                        <p class="text-sm">Erection of high-voltage transformers for enhanced power supply at Aurobindo Pharma, Sangareddy.</p>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-xl font-semibold mb-2">Transformer Erection</h3>
+                    <p class="text-gray-600">Erection of high-voltage transformers for enhanced power supply at Aurobindo Pharma, Sangareddy.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <button class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition-colors duration-300 animate-button">
+                View More Projects
+            </button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        // GSAP Animations for Projects Section
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.from('.animate-section', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: '.animate-section',
+                    start: 'top 80%'
+                }
+            });
+
+            gsap.utils.toArray('.animate-card').forEach((card, index) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.6,
+                    delay: index * 0.2,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    }
+                });
+            });
+
+            gsap.from('.animate-pulse', {
+                scale: 1.1,
+                repeat: -1,
+                yoyo: true,
+                duration: 1.5,
+                ease: 'power1.inOut'
+            });
+
+            gsap.from('.animate-button', {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.6,
+                scrollTrigger: {
+                    trigger: '.animate-button',
+                    start: 'top 90%'
+                }
+            });
+
+            // View More Projects button click effect
+            document.querySelector('.animate-button').addEventListener('click', () => {
+                alert('Explore more of our 1025+ projects across India!');
+            });
+        });
+    </script>
+</section>
+    <!-- Expert Team Section -->
+    <section id="team" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 animate-section">Our Expert Mentors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center team-card animate-card">
+                    <img src="image/sasi.jpg" alt="Venkatesh Rao" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Sasikumar</h3>
+                    <p class="text-gray-600 mb-2">Founder & Chief Engineer</p>
+                    <p class="text-gray-600">Over 30 years of experience in electrical engineering and project management.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center team-card animate-card">
+                    <img src="image/kk.jpg" alt="Lakshmi Priya" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Krishna</h3>
+                    <p class="text-gray-600 mb-2">Junior Electrical Consultant</p>
+                    <p class="text-gray-600">Expert in sustainable electrical solutions and system upgrades.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center team-card animate-card">
+                    <img src="image/thillai.jpg" alt="Suresh Kumar" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Thillai vijayan.V</h3>
+                    <p class="text-gray-600 mb-2">Project Manager</p>
+                    <p class="text-gray-600">Leads complex industrial projects with a focus on safety and efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Gallery Section -->
+<section id="gallery" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 animate-section">Project Gallery</h2>
+        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="card animate-card">
+                <img src="image/m1.jpg" alt="Gallery Image 1" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m2.jpg" alt="Gallery Image 2" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m3.jpg" alt="Gallery Image 3" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m4.jpg" alt="Gallery Image 4" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m5.jpg" alt="Gallery Image 5" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <!-- <div class="card animate-card">
+                <img src="image/m6.jpg" alt="Gallery Image 6" class="w-full h-48 object-cover rounded-lg">
+            </div> -->
+            <div class="card animate-card">
+                <img src="image/m7.jpg" alt="Gallery Image 7" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m8.jpg" alt="Gallery Image 8" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m9.jpg" alt="Gallery Image 9" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m10.jpg" alt="Gallery Image 10" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m11.jpg" alt="Gallery Image 11" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m12.jpg" alt="Gallery Image 12" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m13.jpg" alt="Gallery Image 13" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="card animate-card">
+                <img src="image/m14.jpg" alt="Gallery Image 14" class="w-full h-48 object-cover rounded-lg">
+            </div>
+             <div class="card animate-card">
+                <img src="image/m15.jpg" alt="Gallery Image 14" class="w-full h-48 object-cover rounded-lg">
+            </div>
+             <div class="card animate-card">
+                <img src="image/m16.jpg" alt="Gallery Image 14" class="w-full h-48 object-cover rounded-lg">
+            </div>
+             <div class="card animate-card">
+                <img src="image/m17.jpg" alt="Gallery Image 14" class="w-full h-48 object-cover rounded-lg">
+            </div>
+             <div class="card animate-card">
+                <img src="image/m18.jpg" alt="Gallery Image 14" class="w-full h-48 object-cover rounded-lg">
+            </div>
+             <div class="card animate-card">
+                <img src="image/m19.jpg" alt="Gallery Image 14" class="w-full h-48 object-cover rounded-lg">
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        // Gallery Shuffling Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryGrid = document.getElementById('gallery-grid');
+            const cards = Array.from(galleryGrid.children);
+
+            // Fisher-Yates shuffle algorithm
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            // Shuffle gallery items with GSAP animation
+            function shuffleGallery() {
+                const shuffledCards = shuffleArray([...cards]);
+                
+                // Animate cards to new positions
+                gsap.to(cards, {
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 0.3,
+                    stagger: 0.05,
+                    onComplete: () => {
+                        // Reorder DOM elements
+                        shuffledCards.forEach(card => galleryGrid.appendChild(card));
+                        // Animate back in
+                        gsap.to(cards, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.3,
+                            stagger: 0.05
+                        });
+                    }
+                });
+            }
+
+            // Initial GSAP animations for gallery cards
+            gsap.utils.toArray('.animate-card').forEach((card, index) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    }
+                });
+            });
+
+            gsap.from('.animate-section', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: '.animate-section',
+                    start: 'top 80%'
+                }
+            });
+
+            // Shuffle every 5 seconds
+            setInterval(shuffleGallery, 5000);
+
+            // Initial shuffle on load
+            shuffleGallery();
+        });
+    </script>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 animate-section">Contact Us</h2>
+        <div class="max-w-lg mx-auto">
+            <div id="contact-form" class="bg-white p-6 rounded-lg shadow-lg"></div>
+        </div>
+        <div class="mt-8 text-center text-gray-600">
+            <p class="mb-2"><strong>Email:</strong> <a href="mailto:sasi9444818120@gmail.com" class="text-blue-600 hover:underline">sasi9444818120@gmail.com</a></p>
+            <p class="mb-2"><strong>Phone:</strong> <a href="tel:+917299669173" class="text-blue-600 hover:underline">+91 7299669173</a></p>
+            <p class="mb-2"><strong>GST IN:</strong> 33BQVPS4557G1Z7</p>
+            <p class="mb-2"><strong>Address:</strong> 30F Ernavoor, Chennai, Tamil Nadu, India</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Sri Venkateswara Constructions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/babel">
+        // Contact Form Component
+        function ContactForm() {
+            const [formData, setFormData] = React.useState({
+                name: '',
+                email: '',
+                message: ''
+            });
+            const [status, setStatus] = React.useState('');
+
+            const handleChange = (e) => {
+                setFormData({ ...formData, [e.target.name]: e.target.value });
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                setStatus('Thank you! Your message has been sent.');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus(''), 5000);
+            };
+
+            return (
+                <div>
+                    <h3 className="text-xl font-semibold mb-4 text-center">Get in Touch</h3>
+                    <div className="space-y-4">
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Your Name"
+                            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                            required
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Your Email"
+                            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                            required
+                        />
+                        <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            placeholder="Your Message"
+                            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 h-32"
+                            required
+                        ></textarea>
+                        <button
+                            onClick={handleSubmit}
+                            className="w-full bg-yellow-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
+                        >
+                            Send Message
+                        </button>
+                        {status && <p className="text-green-600 text-center">{status}</p>}
+                    </div>
+                </div>
+            );
+        }
+
+        // Render Contact Form
+        ReactDOM.render(<ContactForm />, document.getElementById('contact-form'));
+
+        // Navigation and Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.remove('menu-open');
+                    document.getElementById('nav-links').classList.add('hidden');
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('menu-open');
+            });
+
+            menuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('menu-open');
+            });
+
+            // GSAP Animations
+            gsap.from('.animate-hero', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
+            });
+
+            gsap.utils.toArray('.animate-section').forEach(section => {
+                gsap.from(section, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%'
+                    }
+                });
+            });
+
+            gsap.utils.toArray('.animate-card').forEach((card, index) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.6,
+                    delay: index * 0.2,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
